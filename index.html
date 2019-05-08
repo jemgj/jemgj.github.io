@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Child Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body style="padding: 2rem 0.25rem; background: #efefef;">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 style="font-size: 1.60rem; margin-bottom: 1.5rem;">Child Page</h1>
+                <form name="user_data">
+                    <div class="form-group">
+                        <label for="user_age">Age</label>
+                        <input type="number" name="user_age" class="form-control" id="user_age" min="1" aria-describedby="user_age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_height">Height</label>
+                        <input type="number" name="user_height" class="form-control" id="user_height" aria-describedby="user_height" required>
+                    </div>
+                    <button class="btn btn-lg btn-success float-right" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("form[name='user_data']").submit(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Sending data");
+            parent.postMessage(
+                {
+                    user_age:    $("input[name='user_age']").val(),
+                    user_height: $("input[name='user_height']").val(),
+                },
+                "ParentPage.html");
+        });
+    </script>
+</body>
+</html>
