@@ -36,7 +36,7 @@
         // Send a message to the parent
         var sendMessage = function (msg) {
             // Make sure you are sending a string, and to stringify JSON
-            window.parent.postMessage(msg, 'https://akalyaa.github.io');
+            window.parent.postMessage(msg, 'https://l20-mockjson.azurewebsites.net/parentmessage.html');
         };
         var results = document.getElementById('iframeheading'),
             messageButton = document.getElementById('message_button');
