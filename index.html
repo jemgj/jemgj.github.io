@@ -5,16 +5,22 @@
     <title>iframe Window</title>
     <style>
         body {
-            background-color: #D53C2F;
+            background-color: teal;
             color: white;
         }
     </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
-<body>
-
-    <h1 id="iframeheading"></h1>
-    <p>Set my Parent Header: <input type=text id="toParent"></input><button id="message_button">Set Parent Header</button></p>
-
+<body style="padding: 2rem 0.25rem; background: #efefef;">
+	<div class="container">
+	<div class="row">
+	<div class="col">
+    <h1 style="font-size: 1.60rem; margin-bottom: 1.5rem;" id="iframeheading"></h1>
+    <p>Set my Parent Header: <input type=text class="form-control" id="toParent"></input><button class="btn btn-primary"id="message_button">Set Parent Header</button></p>
+	</div>
+	</div>
+	</div>
 
     <script>
         // addEventListener support for IE8
