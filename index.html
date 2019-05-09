@@ -15,12 +15,12 @@
                 <h1 style="font-size: 1.60rem; margin-bottom: 1.5rem;">Child Page</h1>
                 <form name="user_data">
                     <div class="form-group">
-                        <label for="user_age">Age</label>
-                        <input type="number" name="user_age" class="form-control" id="user_age" min="1" aria-describedby="user_age" required>
+                        <label for="user_id">ID</label>
+                        <input type="number" name="user_id" class="form-control" id="user_id" min="1" aria-describedby="user_id" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_height">Height</label>
-                        <input type="number" name="user_height" class="form-control" id="user_height" aria-describedby="user_height" required>
+                        <label for="user_name">Name</label>
+                        <input type="text" name="user_name" class="form-control" id="user_name" aria-describedby="user_name" required>
                     </div>
                     <button class="btn btn-lg btn-success float-right" type="submit">Send</button>
                 </form>
@@ -34,8 +34,8 @@
             console.log("Sending data");
             parent.postMessage(
                 {
-                    user_age:    $("input[name='user_age']").val(),
-                    user_height: $("input[name='user_height']").val(),
+                    user_id:    $("input[name='user_id']").val(),
+                    user_name: $("input[name='user_name']").val(),
                 },
                 "https://l20-mockjson.azurewebsites.net/ParentPage.html");
         });
