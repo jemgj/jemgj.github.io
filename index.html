@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Child Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title>iframe Window</title>
+    <style>
+        body {
+            background-color: #D53C2F;
+            color: white;
+        }
+    </style>
 </head>
-<body style="padding: 2rem 0.25rem; background: #efefef;">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 style="font-size: 1.60rem; margin-bottom: 1.5rem;">Child Page</h1>
-                <form name="user_data">
-                    <div class="form-group">
-                        <label for="user_id">ID</label>
-                        <input type="number" name="user_id" class="form-control" id="user_id" min="1" aria-describedby="user_id" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user_name">Name</label>
-                        <input type="text" name="user_name" class="form-control" id="user_name" aria-describedby="user_name" required>
-                    </div>
-                    <button class="btn btn-lg btn-success float-right" type="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $("form[name='user_data']").submit(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log("Sending data");
-            parent.postMessage(
-                {
-                    user_id:    $("input[name='user_id']").val(),
-                    user_name: $("input[name='user_name']").val(),
-                },
-                "https://l20-mockjson.azurewebsites.net/ParentPage.html");
+<body>
+
+    <h1>Hello there, i'm an iframe</h1>
+    <p>Send Message: <button id="message_button">Hi parent</button></p>
+    <p>Got Message:</p>
+    <div id="results"></div>
+
+    <script>
+        // addEventListener support for IE8
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+        // Send a message to the parent
+        var sendMessage = function (msg) {
+            // Make sure you are sending a string, and to stringify JSON
+            window.parent.postMessage(msg, 'https://akalyaa.github.io');
+        };
+        var results = document.getElementById('results'),
+            messageButton = document.getElementById('message_button');
+        // Listen to messages from parent window
+        bindEvent(window, 'message', function (e) {
+            results.innerHTML = e.data;
+        });
+        // Send random message data on every button click
+        bindEvent(messageButton, 'click', function (e) {
+            var random = Math.random();
+            sendMessage('' + random);
         });
     </script>
 </body>
