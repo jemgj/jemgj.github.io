@@ -12,10 +12,9 @@
 </head>
 <body>
 
-    <h1>Hello there, i'm an iframe</h1>
-    <p>Send Message: <button id="message_button">Hi parent</button></p>
-    <p>Got Message:</p>
-    <div id="results"></div>
+    <h1 id="iframeheading"></h1>
+    <p>Set my Parent Header: <input type=text id="toParent"></input><button id="message_button">Set Parent Header</button></p>
+
 
     <script>
         // addEventListener support for IE8
@@ -31,16 +30,18 @@
             // Make sure you are sending a string, and to stringify JSON
             window.parent.postMessage(msg, 'https://akalyaa.github.io');
         };
-        var results = document.getElementById('results'),
+        var results = document.getElementById('iframeheading'),
             messageButton = document.getElementById('message_button');
         // Listen to messages from parent window
         bindEvent(window, 'message', function (e) {
+	    document.getElementById('message_button')
             results.innerHTML = e.data;
         });
         // Send random message data on every button click
         bindEvent(messageButton, 'click', function (e) {
-            var random = Math.random();
-            sendMessage('' + random);
+		
+            var message= document.getElementById('toParent').value;
+            sendMessage('' + message);
         });
     </script>
 </body>
